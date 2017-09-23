@@ -689,7 +689,7 @@
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
 
 // Speed for the "accurate" probe of each point
-#define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST)
+#define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST/2)
 
 // Use double touch for probing
 //#define PROBE_DOUBLE_TOUCH
@@ -771,8 +771,8 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 400
-#define Y_BED_SIZE 400
+#define X_BED_SIZE 420
+#define Y_BED_SIZE 520
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
