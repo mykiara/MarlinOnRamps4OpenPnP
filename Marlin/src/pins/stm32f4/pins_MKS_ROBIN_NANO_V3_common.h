@@ -61,7 +61,6 @@
 //#define E0_DIAG_PIN                         PC4
 #define I_DIAG_PIN PC4
 //#define E1_DIAG_PIN                         PE7
-#define Z2_DIAG_PIN PE7
 
 #define X_STOP_PIN                    X_DIAG_PIN
 #define Y_STOP_PIN                    Y_DIAG_PIN
@@ -75,7 +74,6 @@
 #define X_STEP_PIN                          PE3
 #define X_DIR_PIN                           PE2
 
-/* Changing X and Z for pnp (double connector on Z)
 #define Y_ENABLE_PIN                        PE1
 #define Y_STEP_PIN                          PE0
 #define Y_DIR_PIN                           PB9
@@ -83,14 +81,7 @@
 #define Z_ENABLE_PIN                        PB8
 #define Z_STEP_PIN                          PB5
 #define Z_DIR_PIN                           PB4
-*/
-#define Y_ENABLE_PIN                        PB8
-#define Y_STEP_PIN                          PB5
-#define Y_DIR_PIN                           PB4
 
-#define Z_ENABLE_PIN                        PE1
-#define Z_STEP_PIN                          PE0
-#define Z_DIR_PIN                           PB9
 /*
 #define E0_ENABLE_PIN                       PB3
 #define E0_STEP_PIN                         PD6
@@ -105,9 +96,6 @@
 #define E1_STEP_PIN                         PD15
 #define E1_DIR_PIN                          PA1
 */
-#define Y2_ENABLE_PIN PA3
-#define Y2_STEP_PIN PD15
-#define Y2_DIR_PIN PA1
 
 #if HAS_TMC_UART
   //
@@ -117,31 +105,18 @@
   #define X_SERIAL_TX_PIN                   PD5
   #define X_SERIAL_RX_PIN        X_SERIAL_TX_PIN
 
-/* Swap Y and Z
   #define Y_SERIAL_TX_PIN                   PD7
   #define Y_SERIAL_RX_PIN        Y_SERIAL_TX_PIN
 
   #define Z_SERIAL_TX_PIN                   PD4
   #define Z_SERIAL_RX_PIN        Z_SERIAL_TX_PIN
-*/
-  #define Y_SERIAL_TX_PIN                   PD4
-  #define Y_SERIAL_RX_PIN        Y_SERIAL_TX_PIN
 
-  #define Z_SERIAL_TX_PIN                   PD7
-  #define Z_SERIAL_RX_PIN        Z_SERIAL_TX_PIN
-/*
-  #define E0_SERIAL_TX_PIN                  PD9
-  #define E0_SERIAL_RX_PIN      E0_SERIAL_TX_PIN
-  */
-  #define I_SERIAL_TX_PIN PD9
-  #define I_SERIAL_RX_PIN I_SERIAL_TX_PIN
+  #define I_SERIAL_TX_PIN                  PD9
+  #define I_SERIAL_RX_PIN      I_SERIAL_TX_PIN
 
-/* Use 2nd Y-Axis
   #define E1_SERIAL_TX_PIN                  PD8
   #define E1_SERIAL_RX_PIN      E1_SERIAL_TX_PIN
-*/
-  #define Y2_SERIAL_TX_PIN    PD8
-  #define Y2_SERIAL_RX_PIN    Y2_SERIAL_TX_PIN
+
   // Reduce baud rate to improve software serial reliability
   #define TMC_BAUD_RATE                    19200
 #endif
