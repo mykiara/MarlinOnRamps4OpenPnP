@@ -19,6 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
+
 #pragma once
 
 //
@@ -35,9 +36,10 @@
 //#define FLASH_EEPROM_EMULATION                  // Use Flash-based EEPROM emulation
 #if EITHER(NO_EEPROM_SELECTED, I2C_EEPROM)
   #define I2C_EEPROM
-  #define MARLIN_EEPROM_SIZE              0x1000  // 4K
-  #define I2C_SCL_PIN                       PB6
-  #define I2C_SDA_PIN                       PB7
+  #define MARLIN_EEPROM_SIZE              0x1000  // 4KB
+  #define I2C_SCL_PIN                       PB10  // original: PB6
+  #define I2C_SDA_PIN                       PB11  // original: PB7
+  // Alternative on J2 (with +5V) PB10 (SCL) and PB11 (SDA); both %V tolerant IO
 #endif
 
 //
@@ -56,13 +58,15 @@
 #define X_DIAG_PIN                          PA15
 #define Y_DIAG_PIN                          PD2
 #define Z_DIAG_PIN                          PC8
-#define E0_DIAG_PIN                         PC4
-#define E1_DIAG_PIN                         PE7
+//#define E0_DIAG_PIN                         PC4
+#define I_DIAG_PIN PC4
+//#define E1_DIAG_PIN                         PE7
+#define Z2_DIAG_PIN PE7
 
 #define X_STOP_PIN                    X_DIAG_PIN
 #define Y_STOP_PIN                    Y_DIAG_PIN
 #define Z_MIN_PIN                     Z_DIAG_PIN
-#define Z_MAX_PIN                    E0_DIAG_PIN
+#define Z_MAX_PIN                    I_DIAG_PIN // E0_DIAG_PIN
 
 //
 // Steppers
@@ -71,6 +75,7 @@
 #define X_STEP_PIN                          PE3
 #define X_DIR_PIN                           PE2
 
+/* Changing X and Z for pnp (double connector on Z)
 #define Y_ENABLE_PIN                        PE1
 #define Y_STEP_PIN                          PE0
 #define Y_DIR_PIN                           PB9
@@ -78,14 +83,31 @@
 #define Z_ENABLE_PIN                        PB8
 #define Z_STEP_PIN                          PB5
 #define Z_DIR_PIN                           PB4
+*/
+#define Y_ENABLE_PIN                        PB8
+#define Y_STEP_PIN                          PB5
+#define Y_DIR_PIN                           PB4
 
+#define Z_ENABLE_PIN                        PE1
+#define Z_STEP_PIN                          PE0
+#define Z_DIR_PIN                           PB9
+/*
 #define E0_ENABLE_PIN                       PB3
 #define E0_STEP_PIN                         PD6
 #define E0_DIR_PIN                          PD3
+*/
+#define I_ENABLE_PIN PB3
+#define I_STEP_PIN PD6
+#define I_DIR_PIN PD3
 
+/*
 #define E1_ENABLE_PIN                       PA3
 #define E1_STEP_PIN                         PD15
 #define E1_DIR_PIN                          PA1
+*/
+#define Y2_ENABLE_PIN PA3
+#define Y2_STEP_PIN PD15
+#define Y2_DIR_PIN PA1
 
 #if HAS_TMC_UART
   //
@@ -95,18 +117,31 @@
   #define X_SERIAL_TX_PIN                   PD5
   #define X_SERIAL_RX_PIN        X_SERIAL_TX_PIN
 
+/* Swap Y and Z
   #define Y_SERIAL_TX_PIN                   PD7
   #define Y_SERIAL_RX_PIN        Y_SERIAL_TX_PIN
 
   #define Z_SERIAL_TX_PIN                   PD4
   #define Z_SERIAL_RX_PIN        Z_SERIAL_TX_PIN
+*/
+  #define Y_SERIAL_TX_PIN                   PD4
+  #define Y_SERIAL_RX_PIN        Y_SERIAL_TX_PIN
 
+  #define Z_SERIAL_TX_PIN                   PD7
+  #define Z_SERIAL_RX_PIN        Z_SERIAL_TX_PIN
+/*
   #define E0_SERIAL_TX_PIN                  PD9
   #define E0_SERIAL_RX_PIN      E0_SERIAL_TX_PIN
+  */
+  #define I_SERIAL_TX_PIN PD9
+  #define I_SERIAL_RX_PIN I_SERIAL_TX_PIN
 
+/* Use 2nd Y-Axis
   #define E1_SERIAL_TX_PIN                  PD8
   #define E1_SERIAL_RX_PIN      E1_SERIAL_TX_PIN
-
+*/
+  #define Y2_SERIAL_TX_PIN    PD8
+  #define Y2_SERIAL_RX_PIN    Y2_SERIAL_TX_PIN
   // Reduce baud rate to improve software serial reliability
   #define TMC_BAUD_RATE                    19200
 #endif
@@ -129,12 +164,22 @@
 //
 // Heaters / Fans
 //
+
+/* Custom for PnP: Exchange HEATER and FAN pins
 #define HEATER_0_PIN                        PE5   // HEATER1
 #define HEATER_1_PIN                        PB0   // HEATER2
 #define HEATER_BED_PIN                      PA0   // HOT BED
 
 #define FAN0_PIN                            PC14  // FAN
 #define FAN1_PIN                            PB1   // FAN1
+*/
+
+#define HEATER_0_PIN                        PC14   // HEATER1
+#define HEATER_1_PIN                        PB1   // HEATER2
+#define HEATER_BED_PIN                      PA0   // HOT BED
+
+#define FAN0_PIN                             PE5  // FAN
+#define FAN1_PIN                            PB0   // FAN1
 
 //
 // Thermocouples
