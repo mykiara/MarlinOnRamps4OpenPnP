@@ -198,7 +198,7 @@
  * Regardless of these settings the axes are internally named I, J, K, U, V, W.
  */
 #ifdef I_DRIVER_TYPE
-  #define AXIS4_NAME 'A' // :['A', 'B', 'C', 'U', 'V', 'W']
+  #define AXIS4_NAME 'C' // :['A', 'B', 'C', 'U', 'V', 'W']
   #define AXIS4_ROTATES
 #endif
 #ifdef J_DRIVER_TYPE
